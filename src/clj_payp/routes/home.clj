@@ -11,12 +11,37 @@
 (defn about-page []
   (layout/render "about.html"))
 
-(defn handle-paypal
+(defn handle-paypal-checkout
   []
     (let [redirect-url (paypal/url-for-redirect-to-paypal)] ;; pokupi redirect url | upisi inicijalne podatke u bazu | redirektuj
       (resp/redirect redirect-url)))
 
+(defn handle-paypal-redirect
+  "Upisi token i PayerID u bazu, pokupi podatke korisnika i prikazi stranicu za potvrdu uplate!"
+  [token PayerID]
+    (layout/render "final-paypal.html" {:token token}))
+
+(defn dashboard
+  ""
+  []
+    (layout/render "dashboard.html"))
+
+(defn add-to-cart
+  ""
+  [json-data]
+    (do
+      json-data))
+
+(defn cart
+  ""
+  []
+    (layout/render "cart.html"))
+
 (defroutes home-routes
   (GET "/" [] (home-page))
-  (GET "/paypal" [] (handle-paypal))
+  (GET "/dashboard" [] (dashboard))
+  (POST "/add-to-cart" [data] (add-to-cart data))
+  (GET "/cart" [] (cart))
+  (GET "/paypal" [] (handle-paypal-checkout))
+  (GET "/paypal/checkout" [token PayerID] (handle-paypal-redirect token PayerID))
   (GET "/about" [] (about-page)))

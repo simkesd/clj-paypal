@@ -31,8 +31,8 @@ access_token
                  :PAYMENTREQUEST_0_PAYMENTACTION "SALE",
                  :PAYMENTREQUEST_0_AMT "19.95",
                  :PAYMENTREQUEST_0_CURRENCYCODE "USD",
-                 :RETURNURL "http://www.example.com/success.html",
-                 :CANCELURL "http://www.example.com/cancel.html"
+                 :RETURNURL "http://localhost:3000/",
+                 :CANCELURL "http://localhost:3000/about"
                  }
    :accept :json
    :as :clojure}))
@@ -53,4 +53,36 @@ opala
 
 (url-for-redirect-to-paypal)
 
+(defn do-express-checkout [token payer-id] (client/post "https://api-3t.sandbox.paypal.com/nvp"
+  {:form-params {
+                 :grant_type "client_credentials",
+                 :USER  "simkesd-facilitator_api1.gmail.com",
+                 :PWD "1370346674",
+                 :SIGNATURE "AFcWxV21C7fd0v3bYYYRCpSSRl31A9No.r0a.cP9WG88Oh--u6CXyaCO",
+                 :METHOD "DoExpressCheckoutPayment",
+                 :VERSION 93,
+                 :TOKEN token,
+                 :PAYERID payer-id,
+                 :PAYMENTREQUEST_0_PAYMENTACTION "SALE",
+                 :PAYMENTREQUEST_0_AMT "19.95",
+                 :PAYMENTREQUEST_0_CURRENCYCODE "USD",
+                 }
+   :accept :json
+   :as :clojure}))
 
+(defn get-express-checkout-details [token] (client/post "https://api-3t.sandbox.paypal.com/nvp"
+  {:form-params {
+                 :grant_type "client_credentials",
+                 :USER  "simkesd-facilitator_api1.gmail.com",
+                 :PWD "1370346674",
+                 :SIGNATURE "AFcWxV21C7fd0v3bYYYRCpSSRl31A9No.r0a.cP9WG88Oh--u6CXyaCO",
+                 :METHOD "GetExpressCheckoutDetails",
+                 :VERSION 93,
+                 :TOKEN token,
+                 }
+   :accept :json
+   :as :clojure}))
+
+(get-express-checkout-details "asdfasdf")
+
+(do-express-checkout "asdfasfd" "asdfasdf")

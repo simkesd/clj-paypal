@@ -1,0 +1,45 @@
+{% extends "templates/base.html" %}
+
+{% block content %}
+    <h3>
+        <p>This are the products you've selected.</p>
+        <p>Please review your order and finish by clicking on checkout button.</p>
+    </h3>
+
+    <p><a class="btn btn-primary btn-lg" href="/paypal">Pay with paypal</a></p>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>email</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
