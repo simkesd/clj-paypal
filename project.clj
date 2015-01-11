@@ -25,7 +25,8 @@
    [org.clojure/clojure "1.6.0"]
    [environ "1.0.0"]
    [ring-server "0.3.1"]
-   [clj-http "1.0.1"]]
+   [clj-http "1.0.1"]
+   [cheshire "5.4.0"]]
   :repl-options
   {:init-ns clj-payp.repl}
   :jvm-opts

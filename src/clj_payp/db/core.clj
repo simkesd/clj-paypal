@@ -33,18 +33,24 @@
 ;; ******************
 ;; CHECKOUTS
 ;; ******************
+(defn check-if-item-is-added
+  ""
+  [user-id item-id]
+    (mc/find-one db checkout-lists-collection {:userId user-id :finished "false" :items {$elemMatch {:itemId item-id}}}))
 
 (defn update-checkout-list-single
   "Insert or update checkout list"
-  [user-id item-id]
-     (mc/update db checkout-lists-collection {:id user-id :finished "false"} {$set {:item-id item-id}} {:upsert true}))
+  [user-id item-id amount]
+    (if (check-if-item-is-added user-id item-id)
+      ;; if item already exist in list
+           (mc/update db checkout-lists-collection
+                {:userId user-id :finished "false" :items {$elemMatch {:itemId item-id}}}
+                {$inc {"items.$.amount" amount "items.$.itemId" 0}})
 
-(defn update-checkout-list
-  ""
-  [user-id item-ids-array]
-    (mc/update db checkout-lists-collection {:id user-id :finished "false"} {$addToSet {:item-ids ["proba"]}} {:upsert true}))
+      ;; if item doesn't exist in list
+      (mc/insert db checkout-lists-collection
+                {:userId user-id :finished "false" :items [{:itemId item-id :amount amount}]})))
 
-(update-checkout-list 18 [39,39, 19])
 
 (defn get-checkout-list-for-user
   ""
