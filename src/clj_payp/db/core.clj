@@ -11,13 +11,12 @@
                   {:keys [conn db]} (mg/connect-via-uri uri)]
               db))
 
-;; ******************
-;; USERS
-;; ******************
-
 (def users-collection "users")
 (def checkout-lists-collection "checkout-lists")
 
+;; ******************
+;; USERS
+;; ******************
 (defn create-user [user]
   (mc/insert db users-collection user))
 
@@ -34,11 +33,18 @@
 ;; CHECKOUTS
 ;; ******************
 (defn check-if-item-is-added
-  ""
+  "Returns nil if item user does not have item in his checkout list, otherwise it returns checkout list."
   [user-id item-id]
     (mc/find-one db checkout-lists-collection {:userId user-id :finished "false" :items {$elemMatch {:itemId item-id}}}))
 
-(defn update-checkout-list-single
+(check-if-item-is-added 999 3)
+
+(defn check-if-checklist-exists
+  "Returns nil if checkout list for user does not exist, or checkout list if it does."
+  [user-id]
+    (mc/find-one db checkout-lists-collection {:userId user-id :finished "false"}))
+
+(defn update-checkout-list-single-old
   "Insert or update checkout list"
   [user-id item-id amount]
     (if (check-if-item-is-added user-id item-id)
@@ -51,13 +57,30 @@
       (mc/insert db checkout-lists-collection
                 {:userId user-id :finished "false" :items [{:itemId item-id :amount amount}]})))
 
+(defn update-checkout-list-single
+  "Insert or update checkout list"
+  [user-id item-id amount]
+    (if (check-if-checklist-exists user-id)
+      ; user already has checklist
+      (if (check-if-item-is-added user-id item-id)
+           ;; if item already exist in list
+           (mc/update db checkout-lists-collection
+                {:userId user-id :finished "false" :items {$elemMatch {:itemId item-id}}}
+                {$inc {"items.$.amount" amount "items.$.itemId" 0}})
+
+          ;; if item doesn't exist in list
+          (mc/update db checkout-lists-collection
+                {:userId user-id :finished "false"}
+                {$addToSet {:items {:itemId item-id :amount amount}}}))
+
+      ; user has not created checklist yet
+      (mc/insert db checkout-lists-collection
+                     {:userId user-id :finished "false" :items [{:itemId item-id :amount amount}]})))
 
 (defn get-checkout-list-for-user
   ""
   [user-id]
     (mc/find-maps db checkout-lists-collection {:id user-id :finished "false"}))
-
-(get-checkout-list-for-user 999)
 
 (defn mark-checkout-list-as-finished
   ""
@@ -68,8 +91,6 @@
    (mc/find db checkout-lists-collection {:user-id user-id}))
 
 
-(mc/find-maps db checkout-lists-collection)
-
-(mc/find-maps db users-collection)
-
-(mc/find-one-as-map db users-collection {:id "999"})
+;(mc/find-maps db checkout-lists-collection)
+;(mc/find-maps db users-collection)
+;(mc/find-one-as-map db users-collection {:id "999"})

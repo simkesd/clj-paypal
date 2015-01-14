@@ -5,7 +5,8 @@
             [noir.response :as resp]
             [clj-payp.paypal :as paypal]
             [clj-payp.db.core :as db]
-            [cheshire.core :refer :all]))
+            [cheshire.core :refer :all]
+            [noir.session :as session]))
 (defn home-page []
   (layout/render
     "home.html" {:content (util/md->html "/md/docs.md")}))
@@ -28,6 +29,11 @@
   []
     (layout/render "dashboard.html"))
 
+(defn add-to-cart-bla
+  ""
+  [json-data]
+    (str (type (session/get :user-id))))
+
 (defn add-to-cart
   ""
   [json-data]
@@ -38,8 +44,9 @@
         (do
           (str helper))
         (do
-          (db/update-checkout-list-single (:id (first json)) 15 20)
-          (recur (rest json) (conj helper (type json)))))))
+          (str json-data)
+          (db/update-checkout-list-single (java.lang.Integer/parseInt (session/get :user-id)) (:item-id (first json)) (:amount (first json)))
+          (recur (rest json) (conj helper (first json)))))))
 
 (defn cart
   ""

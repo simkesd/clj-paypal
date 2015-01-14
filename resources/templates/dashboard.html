@@ -5,14 +5,15 @@
         Welcome to clojure store. <br />Select items you want to order and click "Proceed" and you will be taken to checkout page.
     </h3>
 
+<form method="POST" action="/add-to-cart" id="checkout-form">
     <div class="row">
-        <form method="POST" action="/add-to-cart" id="checkout-form">
+
 		<div class="col-xs-4 col-lg-4 item-wrapper">
 			<h2>Heading</h2>
             <img src="img/clj-badge.jpg">
 			<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
 			<div class="squaredTwo check-box">
-                <input data-item-id="1" type="checkbox" value="None" id="squaredTwo" name="check" />
+                <input data-item='{"item-id" : 1, "amount": 1}' type="checkbox" value="None" id="squaredTwo" name="check" />
                 <label for="squaredTwo"></label>
             </div>
 		</div><!--/.col-xs-6.col-lg-4-->
@@ -21,7 +22,7 @@
 			<img src="img/clj-shirt2.jpg">
 			<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
 			<div class="squaredTwo check-box">
-                <input type="checkbox" value="None" id="squaredTwo" name="check" />
+                <input data-item='{"item-id" : 2, "amount": 1}' type="checkbox" value="None" id="squaredTwo" name="check" />
                 <label for="squaredTwo"></label>
             </div>
 		</div><!--/.col-xs-6.col-lg-4-->
@@ -30,49 +31,20 @@
 			<img src="img/clj-hoodie.jpg">
 			<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
 			<div class="squaredTwo check-box">
-                <input type="checkbox" value="None" id="squaredTwo" name="check" />
+                <input data-item='{"item-id" : 3, "amount": 1 }' type="checkbox" value="None" id="squaredTwo" name="check" />
                 <label for="squaredTwo"></label>
             </div>
 		</div><!--/.col-xs-6.col-lg-4-->
-
-        <button type="submit" id="checkout">Checkout</button>
-        </form>
 	</div>
 
-    <p><a class="btn btn-primary btn-lg" href="/paypal">Pay with paypal</a></p>
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>email</th>
-                    <th></th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="row">
+        <div class="bs-example" data-example-id="block-btns">
+            <div class="well" style="max-width: 400px; margin: 0 auto 10px;">
+                <button type="submit" id="checkout" class="btn btn-primary btn-lg btn-block">Checkout items</button>
+            </div>
+        </div>
     </div>
+</form>
+
+
 {% endblock %}
