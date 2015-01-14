@@ -44,21 +44,8 @@
   [user-id]
     (mc/find-one db checkout-lists-collection {:userId user-id :finished "false"}))
 
-(defn update-checkout-list-single-old
-  "Insert or update checkout list"
-  [user-id item-id amount]
-    (if (check-if-item-is-added user-id item-id)
-      ;; if item already exist in list
-           (mc/update db checkout-lists-collection
-                {:userId user-id :finished "false" :items {$elemMatch {:itemId item-id}}}
-                {$inc {"items.$.amount" amount "items.$.itemId" 0}})
-
-      ;; if item doesn't exist in list
-      (mc/insert db checkout-lists-collection
-                {:userId user-id :finished "false" :items [{:itemId item-id :amount amount}]})))
-
 (defn update-checkout-list-single
-  "Insert or update checkout list"
+  "Insert or update checkout list with given amount of items."
   [user-id item-id amount]
     (if (check-if-checklist-exists user-id)
       ; user already has checklist
