@@ -1,45 +1,53 @@
 {% extends "templates/base.html" %}
 
 {% block content %}
+    {% if items %}
     <h3>
         <p>This are the products you've selected.</p>
         <p>Please review your order and finish by clicking on checkout button.</p>
     </h3>
 
-    <p><a class="btn btn-primary btn-lg" href="/paypal">Pay with paypal</a></p>
+    <hr>
+
+    
     <div class="table-responsive">
-        <table class="table table-striped">
+        <table class="table table-striped" id="shoping-cart">
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th>Unique ID</th>
                     <th>Name</th>
-                    <th>email</th>
-                    <th></th>
+                    <th>Price</th>
+                    <th>Amount</th>
+                    <th>Image</th>
+                    <th>Remove</th>
                 </tr>
             </thead>
 
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+              {% for item in items %}
+                  <tr>
+                      <th scope="row">{{item.id}}</th>
+                      <td>{{item.name}}</td>
+                      <td class="item-price" >{{item.price}} $</td>
+                      <td class="item-amount" >{{item.amount}}</td>
+                      <td><img src="img/{{item.img_name}}" width="40px" /></td>
+                      <td><button data-id="{{item.id}}" class="cart-item-removal" href="/cart/remove/{{item.id}}">Remove</button></td>
                 </tr>
-
+              {% endfor %}
                 <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
+                    <th scope="row">Total</th>
+                    <td>&nbsp;</td>
+                    <td class="total-price"><span></span> $</td>
+                    <td class="total-amount"><span></span></td>
+                    <td>&nbsp;</td>
                 </tr>
             </tbody>
         </table>
     </div>
+
+    <p><a class="btn btn-primary btn-lg" href="/paypal">Checkout with paypal</a></p>
+
+    {% else %}
+      <h3>Your cart is empty. </br>Please visit our <a class="btn btn-primary" href="{{servlet-context}}/store">store</a> to add products to your cart.</h3>
+    {% endif %}
 {% endblock %}

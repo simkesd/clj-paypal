@@ -1,1 +1,36 @@
-{{ token }}
+{% extends "templates/base.html" %}
+
+{% block content %}
+
+<h3>
+    These are your checkout details. Please review them before making a payment.<br />
+</h3>
+
+<ul>
+    <li>Token: {{ buyer-details.TOKEN }} <small> - Unique number by which we will identify your purchase.</small></li>
+    <li>First name: {{ buyer-details.FIRSTNAME }}</li>
+    <li>Last name: {{ buyer-details.LASTNAME }}</li>
+    <li>Paypal name: {{ buyer-details.SHIPTONAME }}</li>
+    <li>Email: {{ buyer-details.EMAIL }}</li>
+
+    <li>Payment amount: {{ buyer-details.AMT }}</li>
+    <li>Street: {{ buyer-details.SHIPTOSTREET }}</li>
+    <li>City: {{ buyer-details.SHIPTOCITY }}</li>
+    <li>ZIP code: {{ buyer-details.SHIPTOZIP }}</li>
+    <li>State: {{ buyer-details.SHIPTOSTATE }}</li>
+    <li>Country name: {{ buyer-details.SHIPTOCOUNTRYNAME }}</li>
+    <li>Country code: {{ buyer-details.COUNTRYCODE }}</li>
+    <li>Checkout timestamp: {{ buyer-details.TIMESTAMP }}</li>
+</ul>
+
+<div class="row">
+        <div class="bs-example" data-example-id="block-btns">
+            <div class="well" style="max-width: 400px; margin: 0 auto 10px;">
+                <a class="btn btn-primary btn-lg btn-block" href="/cart">Cancel - <small>go back to cart</small></a>
+                <a class="btn btn-primary btn-lg btn-block" href="/paypal/pay?token={{ token }}&PayerID={{ buyer-details.PAYERID }}">Finish payment</a>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

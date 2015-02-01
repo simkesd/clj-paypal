@@ -13,14 +13,10 @@
 
 db
 
-(def body (db :body))
-
-(def access_token (body :access_token))
-
-access_token
 
 (def url-start "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=")
-(defn get-response [] (client/post "https://api-3t.sandbox.paypal.com/nvp"
+
+(defn get-response [amount] (client/post "https://api-3t.sandbox.paypal.com/nvp"
   {:form-params {
                  :grant_type "client_credentials",
                  :USER  "simkesd-facilitator_api1.gmail.com",
@@ -29,31 +25,23 @@ access_token
                  :METHOD "SetExpressCheckout",
                  :VERSION 93,
                  :PAYMENTREQUEST_0_PAYMENTACTION "SALE",
-                 :PAYMENTREQUEST_0_AMT "19.95",
+                 :PAYMENTREQUEST_0_AMT amount,
                  :PAYMENTREQUEST_0_CURRENCYCODE "USD",
-                 :RETURNURL "http://localhost:3000/",
-                 :CANCELURL "http://localhost:3000/about"
+                 :RETURNURL "http://localhost:3000/paypal/checkout",
+                 :CANCELURL "http://localhost:3000",
                  }
    :accept :json
    :as :clojure}))
 
-(def parsed (:body (get-response)))
-parsed
-
-(def opala (keywordize-keys (form-decode (name parsed))))
-opala
-
 (defn url-for-redirect-to-paypal
-  []
-  (do (let [response-body ((get-response) :body)
+  [amount]
+  (do (let [response-body ((get-response amount) :body)
             parsed-response-body (keywordize-keys
                                     (form-decode (name response-body)))
             token (:TOKEN parsed-response-body)]
         (str url-start token))))
 
-(url-for-redirect-to-paypal)
-
-(defn do-express-checkout [token payer-id] (client/post "https://api-3t.sandbox.paypal.com/nvp"
+(defn do-express-checkout [token payer-id amount] (client/post "https://api-3t.sandbox.paypal.com/nvp"
   {:form-params {
                  :grant_type "client_credentials",
                  :USER  "simkesd-facilitator_api1.gmail.com",
@@ -64,7 +52,7 @@ opala
                  :TOKEN token,
                  :PAYERID payer-id,
                  :PAYMENTREQUEST_0_PAYMENTACTION "SALE",
-                 :PAYMENTREQUEST_0_AMT "19.95",
+                 :PAYMENTREQUEST_0_AMT amount,
                  :PAYMENTREQUEST_0_CURRENCYCODE "USD",
                  }
    :accept :json
@@ -83,6 +71,16 @@ opala
    :accept :json
    :as :clojure}))
 
-(get-express-checkout-details "asdfasdf")
+(defn buyer-details
+  ""
+  [token]
+    (let [response-body ((get-express-checkout-details token) :body)
+            parsed-response-body (keywordize-keys (form-decode (name response-body)))]
+        parsed-response-body))
 
-(do-express-checkout "asdfasfd" "asdfasdf")
+(defn pay
+  ""
+  [token payer-id amount]
+    (let [response-body ((do-express-checkout token payer-id amount) :body)
+            parsed-response-body (keywordize-keys (form-decode (name response-body)))]
+        parsed-response-body))

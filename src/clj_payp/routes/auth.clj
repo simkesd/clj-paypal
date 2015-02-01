@@ -77,9 +77,9 @@
         (handle-registration id pass pass1))
 
   (GET "/profile" [] (profile))
-  
+
   (POST "/update-profile" {params :params} (update-profile params))
-  
+
   (GET "/login" req
         (handle-login (get-in req [:headers "authorization"])))
 

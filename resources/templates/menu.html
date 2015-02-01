@@ -49,7 +49,7 @@
                     "Authorization": "Basic " + btoa($("input#id").val() + ":" + $("input#pass").val())
                 },
                 success: function () {
-                    document.location.href = "{{servlet-context}}/dashboard";
+                    document.location.href = "{{servlet-context}}/store";
                 }
             });
             event.preventDefault();

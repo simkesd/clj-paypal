@@ -1,14 +1,10 @@
 {% extends "templates/base.html" %}
 {% block content %}
   <div class="jumbotron">
-    <h1>Welcome to clj-payp</h1>
-    <p>Time to start building your site!</p>
-    <p><a class="btn btn-primary btn-lg" href="http://luminusweb.net">Learn more &raquo;</a></p>
-  </div>
+    <h1>Welcome to Clojure gift store</h1>
+    <p>Order your favourite clojure item, and pay for it online!</p>
+    <p><a class="btn btn-primary btn-lg" href="{{servlet-context}}/register">Register now &raquo;</a></p>
 
-  <div class="row-fluid">
-    <div class="span9">
-    {{content|safe}}
-    </div>
+    <p>Or see what we have in our store <a class="btn btn-primary" href="{{servlet-context}}/store">Items &raquo;</a></p>
   </div>
 {% endblock %}

@@ -34,6 +34,11 @@ input[type=checkbox] {
 	visibility: hidden;
 }
 
+#shoping-cart td,
+#shoping-cart th {
+  vertical-align: middle;
+}
+
 /* SQUARED TWO */
 .squaredTwo {
 	width: 28px;

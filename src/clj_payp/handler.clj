@@ -71,5 +71,5 @@
    :access-rules
    []
    :formats
-   [:json-kw :edn :transit-json]))
+   [:json :json-kw :edn :transit-json]))
 

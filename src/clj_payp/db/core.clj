@@ -1,7 +1,8 @@
 (ns clj-payp.db.core
     (:require [monger.core :as mg]
               [monger.collection :as mc]
-              [monger.operators :refer :all])
+              [monger.operators :refer :all]
+              monger.json)
   (:import org.bson.types.ObjectId))
 
 
@@ -12,7 +13,8 @@
               db))
 
 (def users-collection "users")
-(def checkout-lists-collection "checkout-lists")
+(def shopping-cart-collection "checkout-lists")
+(def items-collection "items")
 
 ;; ******************
 ;; USERS
@@ -30,54 +32,98 @@
   (mc/find-one-as-map db "users" {:id id}))
 
 ;; ******************
-;; CHECKOUTS
+;; SHOPPING CART
 ;; ******************
-(defn check-if-item-is-added
-  "Returns nil if item user does not have item in his checkout list, otherwise it returns checkout list."
+(defn item-is-added?
+  "Returns nil if item user does not have item in his shopping-cart, otherwise it returns checkout list."
   [user-id item-id]
-    (mc/find-one db checkout-lists-collection {:userId user-id :finished "false" :items {$elemMatch {:itemId item-id}}}))
+    (mc/find-one db shopping-cart-collection {:userId user-id :finished "false" :items {$elemMatch {:id item-id}}}))
 
-(check-if-item-is-added 999 3)
-
-(defn check-if-checklist-exists
+(defn shopping-cart-exists?
   "Returns nil if checkout list for user does not exist, or checkout list if it does."
   [user-id]
-    (mc/find-one db checkout-lists-collection {:userId user-id :finished "false"}))
+    (mc/find-one db shopping-cart-collection {:userId user-id :finished "false"}))
+
+(defn item-by-id
+  ""
+  [item-id]
+    (mc/find-one-as-map db items-collection {:id item-id}))
 
 (defn update-checkout-list-single
   "Insert or update checkout list with given amount of items."
   [user-id item-id amount]
-    (if (check-if-checklist-exists user-id)
+    (if (shopping-cart-exists? user-id)
       ; user already has checklist
-      (if (check-if-item-is-added user-id item-id)
+      (if (item-is-added? user-id item-id)
            ;; if item already exist in list
-           (mc/update db checkout-lists-collection
-                {:userId user-id :finished "false" :items {$elemMatch {:itemId item-id}}}
-                {$inc {"items.$.amount" amount "items.$.itemId" 0}})
+           (mc/update db shopping-cart-collection
+                {:userId user-id :finished "false" :items {$elemMatch {:id item-id}}}
+                {$inc {"items.$.amount" amount "items.$.id" 0}})
 
           ;; if item doesn't exist in list
-          (mc/update db checkout-lists-collection
+          (mc/update db shopping-cart-collection
                 {:userId user-id :finished "false"}
-                {$addToSet {:items {:itemId item-id :amount amount}}}))
+                {$addToSet {:items (assoc (item-by-id item-id) :amount amount)}}))
 
       ; user has not created checklist yet
-      (mc/insert db checkout-lists-collection
-                     {:userId user-id :finished "false" :items [{:itemId item-id :amount amount}]})))
+      (mc/insert db shopping-cart-collection
+                     {:userId user-id :finished "false" :items [(assoc (item-by-id item-id) :amount amount)]})))
 
-(defn get-checkout-list-for-user
+(defn get-shopping-cart-for-user
   ""
   [user-id]
-    (mc/find-maps db checkout-lists-collection {:id user-id :finished "false"}))
+    (mc/find-one-as-map db shopping-cart-collection {:userId user-id :finished "false"}))
 
-(defn mark-checkout-list-as-finished
+(defn items-by-id
+  "Get items with requested ids"
+  [ids-amounts-vector]
+    (mc/find-maps db items-collection
+                  {$or
+                       (loop
+                         [helper ids-amounts-vector
+                          vector []]
+                         (if (empty? helper)
+                           ;; true
+                           vector
+                           ;;false
+                           (do
+                             (recur (rest helper) (conj vector {:id (:itemId (first helper))})))))}))
+
+(defn mark-shopping-cart-as-finished
   ""
   [object-id-string]
-    (mc/update db checkout-lists-collection {:_id (ObjectId. object-id-string)} {$set {:finished "true"}}))
+    (mc/update db shopping-cart-collection {:_id (ObjectId. (str object-id-string))} {$set {:finished "true"}}))
 
-(defn get-checkout-list-for-user [user-id]
-   (mc/find db checkout-lists-collection {:user-id user-id}))
+(defn payment-amount
+  "Calculate how much does user has to pay. Info are from his current shopping cart!"
+  [user-id]
+  (let [items (:items (get-shopping-cart-for-user 999))]
+    (loop [helper items
+           sum 0]
+      (if (empty? helper)
+        sum
+      (recur (rest helper) (+ sum (* (:amount (first helper)) (:price (first helper)))))))))
+
+(defn add-final-payment-info
+  ""
+  [user-id paypal-info]
+    (mc/update db shopping-cart-collection
+                {:userId user-id :finished "false"}
+                {$set {:paypalInfo paypal-info}}))
+;(reduce + (map #(+ (* (:amount %) (:price %)) ) s))
+
+(defn delete-item-from-cart
+  ""
+  [user-id item-id]
+    (mc/update db shopping-cart-collection {:userId user-id :finished "false"} {$pull {:items {:id item-id}}}))
 
 
-;(mc/find-maps db checkout-lists-collection)
-;(mc/find-maps db users-collection)
-;(mc/find-one-as-map db users-collection {:id "999"})
+;(mc/find-one db shopping-cart-collection {:userId user-id :finished "false" :items {$elemMatch {:id item-id}}})
+
+;; ******************
+;; ITEMS
+;; ******************
+(defn list-items
+  "List all items from database."
+  []
+    (mc/find-maps db items-collection {}))
