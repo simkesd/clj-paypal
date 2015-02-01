@@ -1,0 +1,50 @@
+{% extends "templates/base.html" %}
+
+{% block content %}
+    <h3>
+        Welcome to clojure store. <br />
+        {% if user-id %}
+            Select items you want to order and click "Proceed" and you will be taken to checkout page.
+        {% else %}
+            Please register to proceed.
+        {% endif %}
+    </h3>
+
+<form method="POST" action="/add-to-cart" id="checkout-form">
+    <div class="row">
+
+        {% for item in items %}
+
+		<div class="col-xs-4 col-lg-4 item-wrapper">
+			<h2>{{item.name}}</h2>
+            <img src="img/{{item.img_name}}">
+			<p>{{item.description}}</p>
+            {% if user-id %}
+    			<div class="squaredTwo check-box">
+                    <input data-item='{"item-id" : {{item.id}}, "amount": 1}' type="checkbox" value="None" id="squaredTwo" name="check" />
+                    <label for="squaredTwo"></label>
+                </div>
+            {% endif %}
+		</div><!--/.col-xs-6.col-lg-4-->
+
+        {% endfor %}
+	</div>
+
+    <div class="row">
+        <div class="bs-example" data-example-id="block-btns">
+            <div class="well" style="max-width: 400px; margin: 0 auto 10px;">
+                {% if user-id %}
+                    <button id="checkout-form" href="/store" class="btn btn-primary btn-lg btn-block">Checkout items</button>
+                {% else %}
+                    <a href="/register" class="btn btn-primary btn-lg btn-block">
+                        Register </br>
+                        <small>You can order products only if you are registered.</small>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</form>
+
+
+{% endblock %}

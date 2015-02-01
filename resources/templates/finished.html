@@ -1,0 +1,31 @@
+{% extends "templates/base.html" %}
+
+{% block content %}
+
+<h3>
+    Finished<br />
+</h3>
+
+<ul>
+    <li>Status: {{ data.ACK }}</li>
+    {% if data.L_SHORTMESSAGE0 %}<li>Short message: {{ data.L_SHORTMESSAGE0 }}</li>{% endif %}
+    {% if data.L_LONGMESSAGE0 %}<li>Long message: {{ data.L_LONGMESSAGE0 }}</li>{% endif %}
+    <li>Payment time: {{ data.TIMESTAMP }}</li>
+    <li>Order time: {{ data.PAYMENTINFO_0_ORDERTIME }}</li>
+    <li>Amount: {{ data.PAYMENTINFO_0_AMT }}</li>
+    <li>Fee: {{ data.PAYMENTINFO_0_FEEAMT }}</li>
+    <li>Currency: {{ data.PAYMENTINFO_0_CURRENCYCODE }}</li>
+    <li>Payment status: {{ data.PAYMENTINFO_0_PAYMENTSTATUS }}</li>
+    <li>Error code: {{ data.PAYMENTINFO_0_ERRORCODE }}</li>
+</ul>
+
+<div class="row">
+    <div class="bs-example" data-example-id="block-btns">
+        <div class="well" style="max-width: 400px; margin: 0 auto 10px;">
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
