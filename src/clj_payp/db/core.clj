@@ -120,6 +120,16 @@
 
 ;(mc/find-one db shopping-cart-collection {:userId user-id :finished "false" :items {$elemMatch {:id item-id}}})
 
+(defn get-previous-checkouts
+  ""
+  [user-id]
+    (mc/find-maps db shopping-cart-collection {:userId 999 :finished "true"}))
+
+(defn get-single-checkout
+  ""
+  [checkout-id]
+    (mc/find-one-as-map db shopping-cart-collection { :_id (ObjectId. checkout-id) }))
+
 ;; ******************
 ;; ITEMS
 ;; ******************

@@ -111,6 +111,21 @@
   [item-id]
     (str (db/delete-item-from-cart (java.lang.Integer/parseInt (session/get :user-id)) (java.lang.Integer/parseInt item-id))))
 
+(defn previous-checkouts
+  ""
+  []
+    (layout/render "previous-checkouts.html" {:checkouts (db/get-previous-checkouts (java.lang.Integer/parseInt (session/get :user-id)))}))
+
+(defn all-checkouts
+  ""
+  []
+    (layout/render "all-checkouts.html" {:checkouts (db/get-previous-checkouts (java.lang.Integer/parseInt (session/get :user-id)))}))
+
+(defn checkout-details
+  ""
+  [checkout-id]
+    (layout/render "single-checkout.html" {:checkout (db/get-single-checkout checkout-id)}))
+
 (defroutes home-routes
   (GET "/" [] (home-page))
   (GET "/store" [] (dashboard))
@@ -125,4 +140,7 @@
        "application/javascript" (generate-string (shopping-cart))))
   (GET "/shopping-cart-items" [] (noir.response/content-type
        "application/javascript" (generate-string (shopping-cart-items))))
+  (GET "/previous-checkouts" [] (previous-checkouts))
+  (GET "/all-checkouts" [] (all-checkouts))
+  (GET "/checkout-details/:checkout-id" [checkout-id] (checkout-details checkout-id))
   (GET "/about" [] (about-page)))

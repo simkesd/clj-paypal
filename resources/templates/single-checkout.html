@@ -1,0 +1,27 @@
+{% extends "templates/base.html" %}
+
+{% block content %}
+
+    {% if checkout %}
+
+        <h3>
+            Checkout details for id {{ checkout._id }}<br />
+        </h3>
+
+        <ul>
+
+        </ul>
+
+        <div class="row">
+            <div class="bs-example" data-example-id="block-btns">
+                <div class="well" style="max-width: 400px; margin: 0 auto 10px;">
+
+                </div>
+            </div>
+        </div>
+
+    {% else %}
+        <h3>There is no checkout list with selected id.</h3>
+    {% endif %}
+
+{% endblock %}
