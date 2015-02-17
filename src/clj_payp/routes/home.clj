@@ -22,15 +22,14 @@
        redirect-url (paypal/url-for-redirect-to-paypal amount)] ;; pokupi redirect url | upisi inicijalne podatke u bazu | redirektuj
       (resp/redirect redirect-url)))
 
+
+;(db/payment-amount "888")
+
+
 (defn dashboard
   ""
   []
     (layout/render "store.html" {:items (db/list-items)}))
-
-(defn add-to-cart-bla
-  ""
-  [json-data]
-    (str (type (session/get :user-id))))
 
 (defn add-to-cart
   ""
@@ -43,7 +42,7 @@
           (str helper))
         (do
           (str json-data)
-          (db/update-checkout-list-single (java.lang.Integer/parseInt (session/get :user-id)) (:item-id (first json)) (:amount (first json)))
+          (db/update-checkout-list-single (session/get :user-id) (:item-id (first json)) (:amount (first json)))
           (recur (rest json) (conj helper (first json)))))))
 
 (defn ids-from-shoping-cart
@@ -60,7 +59,7 @@
 (defn cart
   ""
   []
-    (layout/render "cart.html" {:items (:items (db/get-shopping-cart-for-user 999))}))
+    (layout/render "cart.html" {:items (:items (db/get-shopping-cart-for-user (session/get :user-id)))}))
 
 (defn items
   ""
@@ -70,13 +69,13 @@
 (defn shopping-cart-items
   ""
   []
-    (:items (db/get-shopping-cart-for-user 999)))
+    (:items (db/get-shopping-cart-for-user (session/get :user-id))))
 
 
 (defn shopping-cart
   ""
   []
-    (db/get-shopping-cart-for-user 999))
+    (db/get-shopping-cart-for-user (session/get :user-id)))
 
 (defn handle-paypal-redirect
   "Upisi token i PayerID u bazu, pokupi podatke korisnika i prikazi stranicu za potvrdu uplate!"
@@ -96,9 +95,9 @@
             (println (str (type (java.lang.Integer/parseInt (session/get :user-id)))))
             (println (str payment-data))
             (println (str (session/get :user-id)))
-            (def res (db/add-final-payment-info (java.lang.Integer/parseInt (session/get :user-id))  payment-data))
+            (def res (db/add-final-payment-info (session/get :user-id) payment-data))
             (println res)
-            (db/mark-shopping-cart-as-finished (:_id (db/get-shopping-cart-for-user 999)))
+            (db/mark-shopping-cart-as-finished (:_id (db/get-shopping-cart-for-user (session/get :user-id))))
             (println "jos posle")
             (layout/render "finished.html" {:success true :data payment-data}))
           ;; if payment was not successfull
@@ -109,22 +108,24 @@
 (defn remove-item-from-cart
   ""
   [item-id]
-    (str (db/delete-item-from-cart (java.lang.Integer/parseInt (session/get :user-id)) (java.lang.Integer/parseInt item-id))))
+    (str (db/delete-item-from-cart (session/get :user-id) (java.lang.Integer/parseInt item-id))))
 
 (defn previous-checkouts
   ""
   []
-    (layout/render "previous-checkouts.html" {:checkouts (db/get-previous-checkouts (java.lang.Integer/parseInt (session/get :user-id)))}))
+    (layout/render "previous-checkouts.html" {:checkouts (db/get-previous-checkouts (session/get :user-id))}))
 
 (defn all-checkouts
   ""
   []
-    (layout/render "all-checkouts.html" {:checkouts (db/get-previous-checkouts (java.lang.Integer/parseInt (session/get :user-id)))}))
+    (layout/render "all-checkouts.html" {:checkouts (db/get-all-checkouts (session/get :user-id))}))
 
 (defn checkout-details
   ""
   [checkout-id]
     (layout/render "single-checkout.html" {:checkout (db/get-single-checkout checkout-id)}))
+
+
 
 (defroutes home-routes
   (GET "/" [] (home-page))
@@ -143,4 +144,7 @@
   (GET "/previous-checkouts" [] (previous-checkouts))
   (GET "/all-checkouts" [] (all-checkouts))
   (GET "/checkout-details/:checkout-id" [checkout-id] (checkout-details checkout-id))
-  (GET "/about" [] (about-page)))
+  (GET "/about" [] (about-page))
+  (GET "/test" [] (if (= (session/get :role) "admin")
+                    "da"
+                    "ne")))

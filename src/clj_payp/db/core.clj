@@ -31,6 +31,11 @@
 (defn get-user [id]
   (mc/find-one-as-map db "users" {:id id}))
 
+(defn get-user-role
+  ""
+  [id]
+    (:role (mc/find-one-as-map db "users" {:id (str id)})))
+
 ;; ******************
 ;; SHOPPING CART
 ;; ******************
@@ -97,7 +102,7 @@
 (defn payment-amount
   "Calculate how much does user has to pay. Info are from his current shopping cart!"
   [user-id]
-  (let [items (:items (get-shopping-cart-for-user 999))]
+  (let [items (:items (get-shopping-cart-for-user user-id))]
     (loop [helper items
            sum 0]
       (if (empty? helper)
@@ -124,6 +129,11 @@
   ""
   [user-id]
     (mc/find-maps db shopping-cart-collection {:userId 999 :finished "true"}))
+
+(defn get-all-checkouts
+  ""
+  [user-id]
+    (mc/find-maps db shopping-cart-collection {}))
 
 (defn get-single-checkout
   ""

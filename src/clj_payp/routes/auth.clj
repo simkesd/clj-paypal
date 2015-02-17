@@ -60,6 +60,8 @@
           account (db/get-user user)]
       (if (and account (crypt/compare pass (:pass account)))
         (do (session/put! :user-id user)
+            (session/put! :role (db/get-user-role user))
+            (println (session/get :role))
             (resp/empty))
         (resp/status 401 (resp/empty))))))
 

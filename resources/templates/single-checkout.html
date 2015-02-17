@@ -1,27 +1,39 @@
-{% extends "templates/base.html" %}
+{% extends "templates/base.html" %} {% block content %} {% if checkout %}
 
-{% block content %}
-
-    {% if checkout %}
-
-        <h3>
+<h3>
             Checkout details for id {{ checkout._id }}<br />
         </h3>
 
+<ul>
+    <li>Finished: {{ checkout.finished }}</li>
+    <li>Status: {{ checkout.paypalInfo.PAYMENTINFO_0_PAYMENTSTATUS }}</li>
+    <li>Payment amount: {{ checkout.paypalInfo.PAYMENTINFO_0_AMT }}</li>
+    <li>Transaction ID: {{ checkout.paypalInfo.PAYMENTINFO_0_TRANSACTIONID }}</li>
+    <li>Tax amount: {{ checkout.paypalInfo.PAYMENTINFO_0_TAXAMT }}</li>
+    <li>Fee: {{ checkout.paypalInfo.PAYMENTINFO_0_FEEAMT }}</li>
+    <li>Order time: {{ checkout.paypalInfo.PAYMENTINFO_0_ORDERTIME }}</li>
+    <li>Timestamp: {{ checkout.paypalInfo.TIMESTAMP }}</li>
+    <li>Currency: {{ checkout.paypalInfo.PAYMENTINFO_0_CURRENCYCODE }}</li>
+    <li>Transaction type: {{ checkout.paypalInfo.PAYMENTINFO_0_TRANSACTIONTYPE }}</li>
+    <li>Payment type: {{ checkout.paypalInfo.PAYMENTINFO_0_PAYMENTTYPE }}</li>
+</ul>
+
+<div class="item-listing-wrapper">
+    <h4>Details for buyed items:</h4>
+    {% for item in checkout.items %}
+    <div class="items-listing">
+        <h1>{{ item.name }}</h1>
+
         <ul>
-
+            <li><img src="{{servlet-context}}/img/{{item.img_name}}" width="30px" /></li>
+            <li>Price: {{ item.price }}</li>
+            <li>Amount: {{ item.amount }}</li>
+            <li>Description: {{ item.description }}</li>
         </ul>
-
-        <div class="row">
-            <div class="bs-example" data-example-id="block-btns">
-                <div class="well" style="max-width: 400px; margin: 0 auto 10px;">
-
-                </div>
-            </div>
-        </div>
-
-    {% else %}
-        <h3>There is no checkout list with selected id.</h3>
-    {% endif %}
-
+    </div>
+{% endfor %} 
+</div>
+{% else %}
+<h3>There is no checkout list with selected id.</h3> 
+{% endif %} 
 {% endblock %}

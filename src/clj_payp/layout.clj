@@ -28,7 +28,9 @@
               (.getContextPath context)
               (catch IllegalArgumentException _ context)))
           :user-id
-          (session/get :user-id))
+          (session/get :user-id)
+          :role
+          (session/get :role))
         (parser/render-file (str template-path template))
         response)
       "text/html; charset=utf-8")))

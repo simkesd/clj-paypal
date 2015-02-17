@@ -1,53 +1,50 @@
 {% extends "templates/base.html" %}
 
 {% block content %}
-    {% if items %}
-    <h3>
-        <p>This are the products you've selected.</p>
-        <p>Please review your order and finish by clicking on checkout button.</p>
-    </h3>
+
+    {% if checkouts %}
+    <h4>
+        <p>This are all of your previous finished checkouts.</p>
+    </h4>
 
     <hr>
-
+    <br>
 
     <div class="table-responsive">
         <table class="table table-striped" id="shoping-cart">
             <thead>
                 <tr>
-                    <th>Unique ID</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Amount</th>
-                    <th>Image</th>
-                    <th>Remove</th>
+                    <th> Unique ID </th>
+                    <th>Payment amount</th>
+                    <th>Currency</th>
+                    <th>Transaction ID</th>
+                    <th>Payment fee</th>
+                    <th>Order time </th>
+                    <th>Timestamp </th>
+                    <th>Payment status </th>
+                    <th>Details </th>
                 </tr>
             </thead>
 
             <tbody>
-              {% for item in items %}
+              {% for checkout in checkouts %}
                   <tr>
-                      <th scope="row">{{item.id}}</th>
-                      <td>{{item.name}}</td>
-                      <td class="item-price" >{{item.price}} $</td>
-                      <td class="item-amount" >{{item.amount}}</td>
-                      <td><img src="img/{{item.img_name}}" width="40px" /></td>
-                      <td><button data-id="{{item.id}}" class="cart-item-removal" href="/cart/remove/{{item.id}}">Remove</button></td>
+                      <th scope="row"><small>{{ checkout._id }}</small></th>
+                      <td>{{checkout.paypalInfo.PAYMENTINFO_0_AMT}}</td>
+                      <td>{{checkout.paypalInfo.PAYMENTINFO_0_CURRENCYCODE}}</td>
+                      <td>{{checkout.paypalInfo.PAYMENTINFO_0_TRANSACTIONID}}</td>
+                      <td>{{checkout.paypalInfo.PAYMENTINFO_0_FEEAMT}}</td>
+                      <td>{{checkout.paypalInfo.PAYMENTINFO_0_ORDERTIME}}</td>
+                      <td>{{checkout.paypalInfo.TIMESTAMP}}</td>
+                      <td>{{checkout.paypalInfo.PAYMENTINFO_0_PAYMENTSTATUS}}</td>
+                      <td><a href="{{servlet-context}}/checkout-details/{{checkout._id}}"> Details</a></td>
                 </tr>
               {% endfor %}
-                <tr>
-                    <th scope="row">Total</th>
-                    <td>&nbsp;</td>
-                    <td class="total-price"><span></span> $</td>
-                    <td class="total-amount"><span></span></td>
-                    <td>&nbsp;</td>
-                </tr>
             </tbody>
         </table>
     </div>
 
-    <p><a class="btn btn-primary btn-lg" href="/paypal">Checkout with paypal</a></p>
-
     {% else %}
-      <h3>Your cart is empty. </br>Please visit our <a class="btn btn-primary" href="{{servlet-context}}/store">store</a> to add products to your cart.</h3>
+      <h3>Your Have no previous checkouts. </br>Please visit our <a class="btn btn-primary" href="{{servlet-context}}/store">store</a> to create your first one.</h3>
     {% endif %}
 {% endblock %}
