@@ -1,1 +1,58 @@
-<html><head><title>README</title><meta content="text/html; charset=UTF-8" http-equiv="content-type"><style type="text/css">.lst-kix_a41kg73d5m0i-6>li:before{content:"\0025cf  "}.lst-kix_aof83p87v1ao-7>li:before{content:"" counter(lst-ctn-kix_aof83p87v1ao-7,lower-latin) ". "}.lst-kix_aof83p87v1ao-0>li:before{content:"" counter(lst-ctn-kix_aof83p87v1ao-0,decimal) ". "}ul.lst-kix_a41kg73d5m0i-8{list-style-type:none}ol.lst-kix_aof83p87v1ao-3{list-style-type:none}ol.lst-kix_aof83p87v1ao-2{list-style-type:none}ul.lst-kix_a41kg73d5m0i-6{list-style-type:none}ol.lst-kix_aof83p87v1ao-5{list-style-type:none}ul.lst-kix_a41kg73d5m0i-7{list-style-type:none}ol.lst-kix_aof83p87v1ao-1.start{counter-reset:lst-ctn-kix_aof83p87v1ao-1 0}ol.lst-kix_aof83p87v1ao-4{list-style-type:none}ul.lst-kix_a41kg73d5m0i-4{list-style-type:none}ol.lst-kix_aof83p87v1ao-7{list-style-type:none}ul.lst-kix_a41kg73d5m0i-5{list-style-type:none}ol.lst-kix_aof83p87v1ao-6{list-style-type:none}ul.lst-kix_a41kg73d5m0i-2{list-style-type:none}ol.lst-kix_aof83p87v1ao-8{list-style-type:none}ul.lst-kix_a41kg73d5m0i-3{list-style-type:none}.lst-kix_aof83p87v1ao-3>li{counter-increment:lst-ctn-kix_aof83p87v1ao-3}.lst-kix_hdrr56n50jyg-8>li:before{content:"\0025a0  "}.lst-kix_aof83p87v1ao-5>li{counter-increment:lst-ctn-kix_aof83p87v1ao-5}.lst-kix_aof83p87v1ao-6>li:before{content:"" counter(lst-ctn-kix_aof83p87v1ao-6,decimal) ". "}ol.lst-kix_aof83p87v1ao-5.start{counter-reset:lst-ctn-kix_aof83p87v1ao-5 0}.lst-kix_q47ee5pa7t6r-2>li:before{content:"\0025a0  "}.lst-kix_hdrr56n50jyg-1>li:before{content:"\0025cb  "}.lst-kix_aof83p87v1ao-5>li:before{content:"" counter(lst-ctn-kix_aof83p87v1ao-5,lower-roman) ". "}ul.lst-kix_hdrr56n50jyg-6{list-style-type:none}.lst-kix_aof83p87v1ao-4>li{counter-increment:lst-ctn-kix_aof83p87v1ao-4}ul.lst-kix_hdrr56n50jyg-5{list-style-type:none}ul.lst-kix_hdrr56n50jyg-8{list-style-type:none}.lst-kix_hdrr56n50jyg-6>li:before{content:"\0025cf  "}.lst-kix_aof83p87v1ao-2>li{counter-increment:lst-ctn-kix_aof83p87v1ao-2}ul.lst-kix_hdrr56n50jyg-7{list-style-type:none}ol.lst-kix_aof83p87v1ao-8.start{counter-reset:lst-ctn-kix_aof83p87v1ao-8 0}.lst-kix_hdrr56n50jyg-7>li:before{content:"\0025cb  "}.lst-kix_aof83p87v1ao-8>li:before{content:"" counter(lst-ctn-kix_aof83p87v1ao-8,lower-roman) ". "}ol.lst-kix_aof83p87v1ao-0{list-style-type:none}.lst-kix_aof83p87v1ao-8>li{counter-increment:lst-ctn-kix_aof83p87v1ao-8}ol.lst-kix_aof83p87v1ao-1{list-style-type:none}ul.lst-kix_hdrr56n50jyg-1{list-style-type:none}ol.lst-kix_aof83p87v1ao-6.start{counter-reset:lst-ctn-kix_aof83p87v1ao-6 0}ul.lst-kix_hdrr56n50jyg-2{list-style-type:none}ul.lst-kix_hdrr56n50jyg-3{list-style-type:none}.lst-kix_a41kg73d5m0i-7>li:before{content:"\0025cb  "}ul.lst-kix_hdrr56n50jyg-4{list-style-type:none}.lst-kix_aof83p87v1ao-0>li{counter-increment:lst-ctn-kix_aof83p87v1ao-0}.lst-kix_q47ee5pa7t6r-0>li:before{content:"\0025cf  "}.lst-kix_a41kg73d5m0i-1>li:before{content:"\0025cb  "}.lst-kix_q47ee5pa7t6r-1>li:before{content:"\0025cb  "}ul.lst-kix_hdrr56n50jyg-0{list-style-type:none}.lst-kix_hdrr56n50jyg-3>li:before{content:"\0025cf  "}.lst-kix_aof83p87v1ao-1>li{counter-increment:lst-ctn-kix_aof83p87v1ao-1}.lst-kix_q47ee5pa7t6r-8>li:before{content:"\0025a0  "}.lst-kix_q47ee5pa7t6r-6>li:before{content:"\0025cf  "}.lst-kix_a41kg73d5m0i-5>li:before{content:"\0025a0  "}.lst-kix_aof83p87v1ao-3>li:before{content:"" counter(lst-ctn-kix_aof83p87v1ao-3,decimal) ". "}.lst-kix_aof83p87v1ao-6>li{counter-increment:lst-ctn-kix_aof83p87v1ao-6}.lst-kix_q47ee5pa7t6r-4>li:before{content:"\0025cb  "}.lst-kix_a41kg73d5m0i-3>li:before{content:"\0025cf  "}ul.lst-kix_q47ee5pa7t6r-8{list-style-type:none}ul.lst-kix_q47ee5pa7t6r-7{list-style-type:none}.lst-kix_hdrr56n50jyg-2>li:before{content:"\0025a0  "}ol.lst-kix_aof83p87v1ao-3.start{counter-reset:lst-ctn-kix_aof83p87v1ao-3 0}ul.lst-kix_q47ee5pa7t6r-6{list-style-type:none}ul.lst-kix_q47ee5pa7t6r-4{list-style-type:none}ul.lst-kix_q47ee5pa7t6r-5{list-style-type:none}.lst-kix_a41kg73d5m0i-8>li:before{content:"\0025a0  "}ul.lst-kix_q47ee5pa7t6r-2{list-style-type:none}.lst-kix_aof83p87v1ao-1>li:before{content:"" counter(lst-ctn-kix_aof83p87v1ao-1,lower-latin) ". "}ul.lst-kix_q47ee5pa7t6r-3{list-style-type:none}ul.lst-kix_q47ee5pa7t6r-0{list-style-type:none}.lst-kix_aof83p87v1ao-7>li{counter-increment:lst-ctn-kix_aof83p87v1ao-7}ul.lst-kix_q47ee5pa7t6r-1{list-style-type:none}.lst-kix_q47ee5pa7t6r-7>li:before{content:"\0025cb  "}.lst-kix_q47ee5pa7t6r-3>li:before{content:"\0025cf  "}ol.lst-kix_aof83p87v1ao-2.start{counter-reset:lst-ctn-kix_aof83p87v1ao-2 0}.lst-kix_aof83p87v1ao-4>li:before{content:"" counter(lst-ctn-kix_aof83p87v1ao-4,lower-latin) ". "}.lst-kix_a41kg73d5m0i-2>li:before{content:"\0025a0  "}.lst-kix_hdrr56n50jyg-0>li:before{content:"\0025cf  "}.lst-kix_q47ee5pa7t6r-5>li:before{content:"\0025a0  "}.lst-kix_a41kg73d5m0i-0>li:before{content:"\0025cf  "}ul.lst-kix_a41kg73d5m0i-0{list-style-type:none}ul.lst-kix_a41kg73d5m0i-1{list-style-type:none}ol.lst-kix_aof83p87v1ao-4.start{counter-reset:lst-ctn-kix_aof83p87v1ao-4 0}.lst-kix_a41kg73d5m0i-4>li:before{content:"\0025cb  "}ol.lst-kix_aof83p87v1ao-7.start{counter-reset:lst-ctn-kix_aof83p87v1ao-7 0}.lst-kix_hdrr56n50jyg-5>li:before{content:"\0025a0  "}.lst-kix_hdrr56n50jyg-4>li:before{content:"\0025cb  "}ol.lst-kix_aof83p87v1ao-0.start{counter-reset:lst-ctn-kix_aof83p87v1ao-0 0}.lst-kix_aof83p87v1ao-2>li:before{content:"" counter(lst-ctn-kix_aof83p87v1ao-2,lower-roman) ". "}ol{margin:0;padding:0}.c2{padding-left:0pt;widows:2;orphans:2;direction:ltr;margin-left:36pt}.c0{widows:2;orphans:2;direction:ltr;page-break-after:avoid}.c1{widows:2;orphans:2;height:11pt;direction:ltr}.c4{widows:2;orphans:2;direction:ltr}.c5{max-width:468pt;background-color:#ffffff;padding:72pt 72pt 72pt 72pt}.c3{margin:0;padding:0}.title{widows:2;padding-top:0pt;line-height:1.15;orphans:2;text-align:left;color:#000000;font-size:21pt;font-family:"Trebuchet MS";padding-bottom:0pt;page-break-after:avoid}.subtitle{widows:2;padding-top:0pt;line-height:1.15;orphans:2;text-align:left;color:#666666;font-style:italic;font-size:13pt;font-family:"Trebuchet MS";padding-bottom:10pt;page-break-after:avoid}li{color:#000000;font-size:11pt;font-family:"Arial"}p{color:#000000;font-size:11pt;margin:0;font-family:"Arial"}h1{widows:2;padding-top:10pt;line-height:1.15;orphans:2;text-align:left;color:#000000;font-size:16pt;font-family:"Trebuchet MS";padding-bottom:0pt;page-break-after:avoid}h2{widows:2;padding-top:10pt;line-height:1.15;orphans:2;text-align:left;color:#000000;font-size:13pt;font-family:"Trebuchet MS";font-weight:bold;padding-bottom:0pt;page-break-after:avoid}h3{widows:2;padding-top:8pt;line-height:1.15;orphans:2;text-align:left;color:#666666;font-size:12pt;font-family:"Trebuchet MS";font-weight:bold;padding-bottom:0pt;page-break-after:avoid}h4{widows:2;padding-top:8pt;line-height:1.15;orphans:2;text-align:left;color:#666666;font-size:11pt;text-decoration:underline;font-family:"Trebuchet MS";padding-bottom:0pt;page-break-after:avoid}h5{widows:2;padding-top:8pt;line-height:1.15;orphans:2;text-align:left;color:#666666;font-size:11pt;font-family:"Trebuchet MS";padding-bottom:0pt;page-break-after:avoid}h6{widows:2;padding-top:8pt;line-height:1.15;orphans:2;text-align:left;color:#666666;font-style:italic;font-size:11pt;font-family:"Trebuchet MS";padding-bottom:0pt;page-break-after:avoid}</style></head><body class="c5"><p class="c0 title"><a name="h.6h7dsqgsg02n"></a><span>CLJ-PAYP</span></p><p class="c1"><span></span></p><h1 class="c0"><a name="h.zce7qnjrwm1e"></a><span>Prerequisites</span></h1><p class="c1"><span></span></p><ul class="c3 lst-kix_hdrr56n50jyg-0 start"><li class="c2"><span>Leiningen 2.0 or above</span></li><li class="c2"><span>MongoDB 2.6.7 or above</span></li></ul><p class="c1"><span></span></p><h1 class="c0"><a name="h.y3t0vchu6c2u"></a><span>Running the app</span></h1><p class="c1"><span></span></p><p class="c4"><span>After you&rsquo;ve installed leiningen and MongoDB you can prepare app for exexution. There are two steps you should do first:</span></p><p class="c1"><span></span></p><ol class="c3 lst-kix_aof83p87v1ao-0 start" start="1"><li class="c2"><span>Run &ldquo;lein deps&rdquo; so that you get the appropriate dependencies</span></li><li class="c2"><span>Seed the database. On Linux you can do this by running &ldquo;mongorestore dump/clj-payp/&rdquo; from the root of application</span></li><li class="c2"><span>Start the server. On linux you can do this by running &ldquo;lein ring server&rdquo; from the root of application.</span></li></ol><p class="c1"><span></span></p><p class="c4"><span>If everything was successful, after server was started your browser will load a tab on adress &ldquo;localhost:3000&rdquo;. Congratulations, you&rsquo;ve started the app.</span></p><p class="c1"><span></span></p><h1 class="c0"><a name="h.6qkl4b9fff7q"></a><span>Testing data</span></h1><p class="c1"><span></span></p><p class="c4"><span>By seeding the database you&rsquo;ve got some users and items, so you can test the application.</span></p><p class="c1"><span></span></p><h2 class="c0"><a name="h.bsnjntl6dyf8"></a><span>Application user</span></h2><p class="c1"><span></span></p><p class="c4"><span>admin user:</span></p><ul class="c3 lst-kix_q47ee5pa7t6r-0 start"><li class="c2"><span>username: 999</span></li><li class="c2"><span>password: password</span></li></ul><p class="c1"><span></span></p><h2 class="c0"><a name="h.llqepc45dap"></a><span>Paypal user (sandbox account)</span></h2><ul class="c3 lst-kix_a41kg73d5m0i-0 start"><li class="c2"><span>email: simke@happyfist.co</span></li><li class="c2"><span>password: 1234567890</span></li></ul></body></html>
+CLJ-PAYP
+=======================================================
+
+
+Prerequisites
+=======================================================
+
+
+
+-   Leiningen 2.0 or above
+-   MongoDB 2.6.7 or above
+
+
+
+Running the app
+=========================================================
+
+
+
+After you’ve installed leiningen and MongoDB you can prepare app for exexution. There are two steps you should do first:
+
+
+
+1.  Run “lein deps” so that you get the appropriate dependencies
+2.  Seed the database. On Linux you can do this by running “mongorestore dump/clj-payp/” from the root of application
+3.  Start the server. On linux you can do this by running “lein ring server” from the root of application.
+
+
+
+If everything was successful, after server was started your browser will load a tab on adress “localhost:3000”. Congratulations, you’ve started the app.
+
+
+Testing data
+======================================================
+
+
+
+By seeding the database you’ve got some users and items, so you can test the application.
+
+
+
+Application user
+----------------------------------------------------------
+
+
+
+admin user:
+
+-   username: 999
+-   password: password
+
+
+
+Paypal user (sandbox account)
+----------------------------------------------------------------------
+
+-   email: simke@happyfist.co
+-   password: 1234567890
